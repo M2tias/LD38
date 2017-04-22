@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
 
     private Vector2 targetSpeed;
     private Rigidbody2D rigidBody2D;
+    private SpriteRenderer renderer;
 
     // Use this for initialization
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -45,47 +47,62 @@ public class Player : MonoBehaviour
 
         if (diggin)
         {
-            if(goldDigTime > maxGoldDigTime)
+            if (goldDigTime > maxGoldDigTime)
             {
                 diggin = false;
                 goldDigTime = 0;
+                renderer.enabled = true;
             }
-            return;
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            move_h = -1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            move_h = 1;
         }
         else
         {
-            move_h = 0;
-        }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                move_h = -1;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                move_h = 1;
+            }
+            else
+            {
+                move_h = 0;
+            }
 
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            move_v = 1;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            move_v = -1;
-        }
-        else
-        {
-            move_v = 0;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            move_v = 0;
-            move_h = 0;
-            diggin = true;
-            resources.DigGold();
-            Debug.Log("Diggin' sum gold");
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                move_v = 1;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                move_v = -1;
+            }
+            else
+            {
+                move_v = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (resources.DigGold())
+                {
+                    move_v = 0;
+                    move_h = 0;
+                    diggin = true;
+                    goldDigTime = 0;
+                    renderer.enabled = false;
+                    Debug.Log("Diggin' sum gold");
+                }
+                else if(resources.RefineGold())
+                {
+                    move_v = 0;
+                    move_h = 0;
+                    diggin = true;
+                    goldDigTime = 0;
+                    renderer.enabled = false;
+                    Debug.Log("Refinin' sum gold");
+                }
+            }
         }
 
         targetSpeed = new Vector2(speed * move_h, speed * move_v);

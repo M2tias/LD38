@@ -9,6 +9,9 @@ public class Resources : MonoBehaviour {
     [Range(0, 30)]
     private int maxGold = 10;*/
 
+    private bool canDig = false;
+    private bool canRefine = false;
+
     private int gold = 0;
 
     [SerializeField]
@@ -16,6 +19,12 @@ public class Resources : MonoBehaviour {
     private int maxGoldOre = 10;
 
     private int goldOre = 0;
+
+    [SerializeField]
+    [Range(0, 30)]
+    private int maxFish = 10;
+
+    private int fish = 0;
 
     [SerializeField]
     [Range(0, 30)]
@@ -60,6 +69,8 @@ public class Resources : MonoBehaviour {
     private Text dayText;
     [SerializeField]
     private Text hungerText;
+    [SerializeField]
+    private Text fishText;
     #endregion
 
 
@@ -95,27 +106,54 @@ public class Resources : MonoBehaviour {
         hunger += hungerTick;
     }
 
-    public void DigGold()
+    public bool DigGold()
     {
+        if(!canDig)
+        {
+            Debug.Log("Not here, buddy!");
+            return false;
+        }
+
         if(goldOre < maxGoldOre)
         {
             goldOre++;
+            gold++; //gold ore gives 1 gold, refining doubles it~
         }
         else
         {
             Debug.Log("Can't carry more gold!");
         }
+        return true;
     }
 
-    public void RefineGold()
+    public bool RefineGold()
     {
+        if(!canRefine)
+        {
+            Debug.Log("What are you trying to do?");
+            return false;
+        }
+
         if(goldOre > 0)
         {
             gold++;
+            goldOre--;
         }
         else
         {
             Debug.Log("Nothing to refine!");
         }
+
+        return true;
+    }
+
+    public void CanDig(bool can)
+    {
+        canDig = can;
+    }
+
+    public void CanRefine(bool can)
+    {
+        canRefine = can;
     }
 }

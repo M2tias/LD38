@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock3TriggerOut : MonoBehaviour
+public class GoldDig : MonoBehaviour
 {
     [SerializeField]
-    private Rock3Manager rockManager;
+    private Resources resources;
 
     // Use this for initialization
     void Start()
@@ -23,8 +23,7 @@ public class Rock3TriggerOut : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("OnOut");
-            rockManager.OnOut();
+            resources.CanDig(true);
         }
     }
 
@@ -32,8 +31,7 @@ public class Rock3TriggerOut : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("OffOut");
-            rockManager.OffOut();
+            resources.CanDig(false);
         }
     }
 }

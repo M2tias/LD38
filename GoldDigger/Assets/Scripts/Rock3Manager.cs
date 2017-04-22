@@ -7,50 +7,76 @@ public class Rock3Manager : MonoBehaviour
     [SerializeField]
     private LayerTrigger trigger;
 
+    [SerializeField]
+    private GameObject topCollider1;
+    [SerializeField]
+    private GameObject topCollider2;
+
     //currently on the "Out"/"In" triggers
-    private bool onOff = false;
-    private bool onIn = false; 
+    private bool onOut = false;
+    private bool onIn = false;
+
+    private bool onRock = false;
+    private bool offRock = true;
 
     private SpriteRenderer renderer;
+    private PolygonCollider2D collider;
 
     // Use this for initialization
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(onRock)
+        {
+            collider.enabled = false;
+            topCollider1.SetActive(true);
+            topCollider2.SetActive(true);
+            renderer.sortingLayerName = "Bottom";
+            trigger.enabled = false;
+            trigger.GetComponent<Collider2D>().enabled = false;
+        }
+        else
+        {
+            collider.enabled = true;
+            topCollider1.SetActive(false);
+            topCollider2.SetActive(false);
+            //renderer.sortingLayerName = "Top"; //needed??
+            trigger.enabled = true;
+            trigger.GetComponent<Collider2D>().enabled = true;
+        }
     }
 
     //stepped on the "Out" trigger
-    public void OnOff()
+    public void OnOut()
     {
-        onOff = true;
-        //already on In trigger -> coming on the rock
-        if (onIn)
+        onOut = true;
+        if(onIn)
         {
-            renderer.sortingLayerName = "Bottom";
-
-        }
-        //leaving rock
-        else
-        {
-            renderer.sortingLayerName = "Top"; //needed??
+            offRock = true;
+            onRock = false;
         }
     }
 
     //stepped off the "Out" trigger
     public void OffOut()
     {
-        onOff = false;
+        onOut = false;
     }
 
     public void OnIn()
     {
         onIn = true;
+        if (onOut)
+        {
+            offRock = false;
+            onRock = true;
+        }
     }
 
     public void OffIn()
