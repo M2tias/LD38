@@ -114,6 +114,14 @@ public class Player : MonoBehaviour
                     //renderer.enabled = false;
                     Debug.Log("Ahh, food!");
                 }
+                else if (resources.Saloon())
+                {
+                    //do nothing
+                }
+                else if (resources.Shop())
+                {
+                    //do nothing
+                }
             }
         }
 

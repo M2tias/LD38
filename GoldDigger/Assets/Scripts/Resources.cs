@@ -14,6 +14,8 @@ public class Resources : MonoBehaviour
     private bool canRefine = false;
     private bool canFish = false;
     private bool canFry = false;
+    private bool canSaloon = false;
+    private bool canShop = false;
 
     private int gold = 0;
 
@@ -76,6 +78,8 @@ public class Resources : MonoBehaviour
     private Text fishText;
     #endregion
 
+    [SerializeField]
+    private DialogSystem dialogSystem;
 
     // Use this for initialization
     void Start()
@@ -209,6 +213,30 @@ public class Resources : MonoBehaviour
         return true;
     }
 
+    public bool Saloon()
+    {
+        if (!canSaloon)
+        {
+            return false;
+        }
+
+        dialogSystem.SetMode(DialogMode.Saloon);
+
+        return true;
+    }
+
+    public bool Shop()
+    {
+        if (!canSaloon)
+        {
+            return false;
+        }
+
+        dialogSystem.SetMode(DialogMode.Shop);
+
+        return true;
+    }
+
     public void CanDig(bool can)
     {
         canDig = can;
@@ -227,6 +255,16 @@ public class Resources : MonoBehaviour
     public void CanFry(bool can)
     {
         canFry = can;
+    }
+
+    public void CanSaloon(bool can)
+    {
+        canSaloon = can;
+    }
+
+    public void CanShop(bool can)
+    {
+        canShop = can;
     }
 
     public void TickChaseSuspicion(float distance)

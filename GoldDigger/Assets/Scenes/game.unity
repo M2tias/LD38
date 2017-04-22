@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 97662790}
   m_Layer: 0
   m_Name: MenuCursor
-  m_TagString: ShopPanel
+  m_TagString: MenuCursor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.5, y: -56.19998}
+  m_AnchoredPosition: {x: -88, y: -21}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97662790
@@ -755,7 +755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.5, y: -56.2}
+  m_AnchoredPosition: {x: -95.5, y: -21}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &140737848
@@ -3472,7 +3472,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 8.042802, y: -0.78771424}
+    - - {x: 5.5810494, y: -0.55311036}
+      - {x: 8.042802, y: -0.78771424}
       - {x: 8.059247, y: -0.18859124}
       - {x: 8.207609, y: 0.1788454}
       - {x: 7.751496, y: 1.1525619}
@@ -3760,6 +3761,7 @@ MonoBehaviour:
   dayText: {fileID: 123613217}
   hungerText: {fileID: 979165375}
   fishText: {fileID: 965023569}
+  dialogSystem: {fileID: 1980990870}
 --- !u!1 &938469853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,8 +3949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -95}
-  m_SizeDelta: {x: 484, y: 100}
+  m_AnchoredPosition: {x: 2, y: -70}
+  m_SizeDelta: {x: 484, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971282352
 MonoBehaviour:
@@ -3985,7 +3987,10 @@ MonoBehaviour:
   m_Text: 'Sleep - 1 g
 
 
-    Eat - 1 g'
+    Eat - 1 g
+
+
+    Nothing'
 --- !u!222 &971282353
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4413,6 +4418,10 @@ PolygonCollider2D:
       - {x: 0.38176632, y: 0.058143616}
       - {x: 1.6395242, y: -0.22042894}
       - {x: 0.6430652, y: -0.5465131}
+      - {x: -0.20319149, y: -0.37650216}
+      - {x: -0.32843575, y: -0.20396006}
+      - {x: -0.70678043, y: -0.13459456}
+      - {x: -0.77782375, y: -0.24602854}
       - {x: -1.4079492, y: -0.10464144}
       - {x: -0.45895767, y: 0.24147415}
 --- !u!4 &1017255499
@@ -4426,6 +4435,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 772033223}
+  - {fileID: 1502277802}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6575,8 +6585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 35.25}
-  m_SizeDelta: {x: -205, y: 160.5}
+  m_AnchoredPosition: {x: 2, y: 52}
+  m_SizeDelta: {x: -205, y: 127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1448593108
 MonoBehaviour:
@@ -6849,6 +6859,67 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1500968782}
+--- !u!1 &1502277801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1502277802}
+  - component: {fileID: 1502277803}
+  - component: {fileID: 1502277804}
+  m_Layer: 0
+  m_Name: ShopDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502277802
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502277801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1017255499}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1502277803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502277801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9adb947f2bd3d44858f7f8bcf8c320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources: {fileID: 0}
+--- !u!60 &1502277804
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502277801}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -0.80556804, y: -0.9749415}
+      - {x: -0.35474336, y: -1.0162728}
+      - {x: -0.31523073, y: -1.2442834}
+      - {x: -0.69172955, y: -1.2572763}
+      - {x: -0.8925879, y: -1.1332095}
 --- !u!1 &1505781188
 GameObject:
   m_ObjectHideFlags: 0
@@ -7389,7 +7460,8 @@ MonoBehaviour:
   m_Text: 'Use Enter to interact.
 
     You can buy a pickaxe from the toolshop and some food from the saloon. Different
-    parts of the map interact in different ways. Use your imagination.'
+    parts of the map interact in different ways. Use your imagination. Try to get
+    as much as gold as you can.'
 --- !u!222 &1609755975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7809,8 +7881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -95}
-  m_SizeDelta: {x: 484, y: 100}
+  m_AnchoredPosition: {x: 2, y: -78.2}
+  m_SizeDelta: {x: 484, y: 133.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732646401
 MonoBehaviour:
@@ -7847,7 +7919,10 @@ MonoBehaviour:
   m_Text: 'Pickaxe - 9 g
 
 
-    Fishing rod - 10 g'
+    Fishing rod - 10 g
+
+
+    Nothing'
 --- !u!222 &1732646402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8161,8 +8236,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1837440051}
   - component: {fileID: 1837440052}
+  - component: {fileID: 1837440053}
   m_Layer: 0
-  m_Name: Door
+  m_Name: SaloonDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8190,7 +8266,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -8200,6 +8276,18 @@ PolygonCollider2D:
       - {x: 0.0069054365, y: -0.23643565}
       - {x: -0.38862622, y: -0.4024012}
       - {x: -0.44486105, y: 0.068366766}
+--- !u!114 &1837440053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1837440050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff7e86f4975daa49be41ecf138d5e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources: {fileID: 902418372}
 --- !u!1 &1879931222
 GameObject:
   m_ObjectHideFlags: 0
@@ -8771,6 +8859,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogPanel: {fileID: 1278594916}
+  introPanel: {fileID: 1436134707}
+  saloonPanel: {fileID: 1983042942}
+  shopPanel: {fileID: 1391208715}
+  resources: {fileID: 902418372}
 --- !u!1 &1981518787
 GameObject:
   m_ObjectHideFlags: 0
@@ -8866,7 +8958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1983042943
 RectTransform:
   m_ObjectHideFlags: 0
