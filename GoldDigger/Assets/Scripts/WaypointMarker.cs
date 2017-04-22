@@ -23,4 +23,9 @@ public class WaypointMarker : MonoBehaviour
     {
         return neighbours;
     }
+
+    public void AddNeighbour(WaypointMarker m)
+    {
+        neighbours.Add(m);
+    }
 }

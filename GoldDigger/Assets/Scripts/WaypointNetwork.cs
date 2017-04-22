@@ -45,6 +45,11 @@ public class WaypointNetwork : MonoBehaviour
 
             foreach (WaypointMarker n in ns)
             {
+                if(!n.GetNeighbours().Contains(mark))
+                {
+                    n.AddNeighbour(mark);
+                }
+
                 if (!drawn.Contains(n))
                 {
                     Gizmos.color = Color.magenta;
