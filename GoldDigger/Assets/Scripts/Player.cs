@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
                     renderer.enabled = false;
                     Debug.Log("Diggin' sum gold");
                 }
-                else if(resources.RefineGold())
+                else if (resources.RefineGold())
                 {
                     diggin = true;
                     goldDigTime = 0;
@@ -114,13 +114,19 @@ public class Player : MonoBehaviour
                     //renderer.enabled = false;
                     Debug.Log("Ahh, food!");
                 }
-                else if (resources.Saloon())
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (resources.Saloon())
                 {
                     //do nothing
+                    Input.ResetInputAxes();
                 }
                 else if (resources.Shop())
                 {
                     //do nothing
+                    Input.ResetInputAxes();
                 }
             }
         }

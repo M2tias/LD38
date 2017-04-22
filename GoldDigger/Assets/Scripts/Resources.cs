@@ -227,7 +227,7 @@ public class Resources : MonoBehaviour
 
     public bool Shop()
     {
-        if (!canSaloon)
+        if (!canShop)
         {
             return false;
         }
