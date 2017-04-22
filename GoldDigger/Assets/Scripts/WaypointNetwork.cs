@@ -10,6 +10,13 @@ public class WaypointNetwork : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "WaypointMarker")
+            {
+                child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame

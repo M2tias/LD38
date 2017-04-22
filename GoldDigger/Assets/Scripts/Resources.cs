@@ -48,7 +48,7 @@ public class Resources : MonoBehaviour
     [Range(0, 100)]
     private int maxSuspiciousness = 100;
 
-    private int suspiciousness = 0;
+    private float suspiciousness = 0;
 
     [SerializeField]
     [Range(0, 100)]
@@ -86,12 +86,20 @@ public class Resources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        suspiciousnessText.text = suspiciousness.ToString() + '/' + maxSuspiciousness.ToString();
+        suspiciousnessText.text = suspiciousness.ToString("0") + '/' + maxSuspiciousness.ToString();
         goldText.text = gold.ToString();
         goldOreText.text = goldOre.ToString() + '/' + maxGoldOre.ToString();
-        hourText.text = hour.ToString() + '/' + hoursInDay.ToString();
+        hourText.text = hour.ToString("0") + '/' + hoursInDay.ToString();
         dayText.text = day.ToString() + '/' + maxDays.ToString();
-        hungerText.text = hunger.ToString() + '/' + maxHunger.ToString();
+        hungerText.text = hunger.ToString("0") + '/' + maxHunger.ToString();
+        if(hunger > 50f)
+        {
+            hungerText.color = Color.red;
+        }
+        else
+        {
+            hungerText.color = Color.black;
+        }
         fishText.text = fish.ToString() + '/' + maxFish.ToString();
     }
 
@@ -219,5 +227,10 @@ public class Resources : MonoBehaviour
     public void CanFry(bool can)
     {
         canFry = can;
+    }
+
+    public void TickChaseSuspicion(float distance)
+    {
+        suspiciousness += distance * 0.01f;
     }
 }

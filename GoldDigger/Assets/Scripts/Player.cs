@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
                 move_v = 0;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKey(KeyCode.Return))
             {
                 move_v = 0;
                 move_h = 0;
