@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Resources : MonoBehaviour {
+public class Resources : MonoBehaviour
+{
     /*no limit for prosperity!
     [SerializeField]
     [Range(0, 30)]
@@ -11,6 +12,8 @@ public class Resources : MonoBehaviour {
 
     private bool canDig = false;
     private bool canRefine = false;
+    private bool canFish = false;
+    private bool canFry = false;
 
     private int gold = 0;
 
@@ -40,7 +43,7 @@ public class Resources : MonoBehaviour {
     private float hourTick = 0.005f;
 
     private float hour = 0;
-    
+
     [SerializeField]
     [Range(0, 100)]
     private int maxSuspiciousness = 100;
@@ -75,30 +78,33 @@ public class Resources : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         suspiciousnessText.text = suspiciousness.ToString() + '/' + maxSuspiciousness.ToString();
         goldText.text = gold.ToString();
         goldOreText.text = goldOre.ToString() + '/' + maxGoldOre.ToString();
         hourText.text = hour.ToString() + '/' + hoursInDay.ToString();
         dayText.text = day.ToString() + '/' + maxDays.ToString();
         hungerText.text = hunger.ToString() + '/' + maxHunger.ToString();
+        fishText.text = fish.ToString() + '/' + maxFish.ToString();
     }
 
     private void FixedUpdate()
     {
-        if(hour > hoursInDay)
+        if (hour > hoursInDay)
         {
             hour = 0;
             day++;
         }
         hour += hourTick;
 
-        if(hunger > maxHunger)
+        if (hunger > maxHunger)
         {
             //die
             hunger = 0;
@@ -108,13 +114,13 @@ public class Resources : MonoBehaviour {
 
     public bool DigGold()
     {
-        if(!canDig)
+        if (!canDig)
         {
             Debug.Log("Not here, buddy!");
             return false;
         }
 
-        if(goldOre < maxGoldOre)
+        if (goldOre < maxGoldOre)
         {
             goldOre++;
             gold++; //gold ore gives 1 gold, refining doubles it~
@@ -128,13 +134,13 @@ public class Resources : MonoBehaviour {
 
     public bool RefineGold()
     {
-        if(!canRefine)
+        if (!canRefine)
         {
             Debug.Log("What are you trying to do?");
             return false;
         }
 
-        if(goldOre > 0)
+        if (goldOre > 0)
         {
             gold++;
             goldOre--;
@@ -142,6 +148,54 @@ public class Resources : MonoBehaviour {
         else
         {
             Debug.Log("Nothing to refine!");
+        }
+
+        return true;
+    }
+
+    public bool Fish()
+    {
+        if (!canFish)
+        {
+            Debug.Log("No fish on land...");
+            return false;
+        }
+
+        if (fish < maxFish)
+        {
+            fish++;
+        }
+        else
+        {
+            Debug.Log("Too much to carry!");
+        }
+
+        return true;
+    }
+
+    public bool Fry()
+    {
+        if (!canFry)
+        {
+            Debug.Log("Try fire, buddy!");
+            return false;
+        }
+
+        if (fish > 0)
+        {
+            if (hunger > 50)
+            {
+                hunger -= 50;
+            }
+            else
+            {
+                hunger = 0;
+            }
+            fish--;
+        }
+        else
+        {
+            Debug.Log("No fish to fry!");
         }
 
         return true;
@@ -155,5 +209,15 @@ public class Resources : MonoBehaviour {
     public void CanRefine(bool can)
     {
         canRefine = can;
+    }
+
+    public void CanFish(bool can)
+    {
+        canFish = can;
+    }
+
+    public void CanFry(bool can)
+    {
+        canFry = can;
     }
 }

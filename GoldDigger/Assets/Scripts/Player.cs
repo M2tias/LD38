@@ -84,10 +84,10 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                move_v = 0;
+                move_h = 0;
                 if (resources.DigGold())
                 {
-                    move_v = 0;
-                    move_h = 0;
                     diggin = true;
                     goldDigTime = 0;
                     renderer.enabled = false;
@@ -95,12 +95,24 @@ public class Player : MonoBehaviour
                 }
                 else if(resources.RefineGold())
                 {
-                    move_v = 0;
-                    move_h = 0;
                     diggin = true;
                     goldDigTime = 0;
                     renderer.enabled = false;
                     Debug.Log("Refinin' sum gold");
+                }
+                else if (resources.Fish())
+                {
+                    diggin = true;
+                    goldDigTime = 0;
+                    //renderer.enabled = false;
+                    Debug.Log("Fishin'");
+                }
+                else if (resources.Fry())
+                {
+                    diggin = true;
+                    goldDigTime = 0;
+                    //renderer.enabled = false;
+                    Debug.Log("Ahh, food!");
                 }
             }
         }

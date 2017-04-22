@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fishing : MonoBehaviour
+public class Frying : MonoBehaviour
 {
     [SerializeField]
     private Resources resources;
@@ -23,7 +23,7 @@ public class Fishing : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            resources.CanFish(true);
+            resources.CanFry(true);
         }
     }
 
@@ -31,7 +31,7 @@ public class Fishing : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            resources.CanFish(false);
+            resources.CanFry(false);
         }
     }
 }
