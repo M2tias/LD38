@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Resources : MonoBehaviour
@@ -26,7 +27,7 @@ public class Resources : MonoBehaviour
     [Range(0, 30)]
     private int maxGoldOre = 10;
 
-    private int goldOre = 0;
+    private int goldOre = 1;
 
     [SerializeField]
     [Range(0, 30)]
@@ -138,6 +139,10 @@ public class Resources : MonoBehaviour
         if(hasPickaxe)
         {
             pickaxeImage.gameObject.SetActive(true);
+        }
+        if(hunger > 100f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -360,9 +365,11 @@ public class Resources : MonoBehaviour
 
     public bool BuyFood()
     {
+        float oreCoef = goldOre > 0 ? 1.5f : 1f;
         if (gold >= foodCost)
         {
             gold -= foodCost;
+            suspiciousness += tipCost * oreCoef;
             hunger = 0;
             return true;
         }
@@ -372,7 +379,7 @@ public class Resources : MonoBehaviour
     public bool BuyTip()
     {
         suspiciousness += tipCost;
-        return false;
+        return true;
     }
 
     public bool SellFish()
@@ -389,11 +396,21 @@ public class Resources : MonoBehaviour
 
     public void TickChaseSuspicion(float distance)
     {
-        suspiciousness += distance * chaseTick;
+        float oreCoef = goldOre > 0 ? 1.5f : 1f;
+
+        suspiciousness += distance * chaseTick * oreCoef;
     }
 
     public void ReduceSuspicion(float amount)
     {
-        suspiciousness -= amount;
+        float oreCoef = goldOre > 0 ? 1.5f : 1f;
+        if (goldOre > 0)
+        {
+            suspiciousness += Mathf.Abs(amount*oreCoef);
+        }
+        else
+        {
+            suspiciousness -= amount;
+        }
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - ShopPanel
   - SaloonPanel
   - IntroPanel
+  - MonologText
+  - HintPanel
   layers:
   - Default
   - TransparentFX

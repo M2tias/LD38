@@ -2190,7 +2190,7 @@ GameObject:
   - component: {fileID: 460760540}
   m_Layer: 0
   m_Name: StoryText
-  m_TagString: Untagged
+  m_TagString: MonologText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2245,9 +2245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: These people seem weird. I think I'll hang around for a couple of weeks
-    at most. I can come back later, it's our land claim after all. Maybe I should
-    not tell them what I'm up to...
+  m_Text: 
 --- !u!222 &460760541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2799,99 +2797,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576106615}
---- !u!1 &586863643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 586863644}
-  - component: {fileID: 586863647}
-  - component: {fileID: 586863646}
-  - component: {fileID: 586863645}
-  m_Layer: 0
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &586863644
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586863643}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1736929978}
-  m_Father: {fileID: 1159371783}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.06, y: 1}
-  m_SizeDelta: {x: 4.92, y: 1.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &586863645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586863643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &586863646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586863643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!223 &586863647
-Canvas:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 586863643}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &589834374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,7 +3803,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 749986239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.15, y: -6.11, z: 0}
+  m_LocalPosition: {x: -7.48, y: -6.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475095984}
@@ -4383,7 +4288,7 @@ MonoBehaviour:
   maxGoldOre: 10
   maxFish: 10
   maxDays: 15
-  hoursInDay: 8
+  hoursInDay: 12
   hourTick: 0.005
   maxSuspiciousness: 100
   maxHunger: 100
@@ -4396,6 +4301,7 @@ MonoBehaviour:
   fishLot: 5
   fishLotPrice: 1
   chaseTick: 0.015
+  tipCost: 5
   suspiciousnessText: {fileID: 1373483680}
   goldText: {fileID: 490923221}
   goldOreText: {fileID: 1425976385}
@@ -4470,7 +4376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83fbb6404f44df4a8597af19cdf28f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources: {fileID: 0}
+  resources: {fileID: 902418372}
 --- !u!60 &914800250
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4480,7 +4386,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -4501,7 +4407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938469853
 GameObject:
@@ -4578,7 +4484,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938469853}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.3, y: -4.48, z: 0}
+  m_LocalPosition: {x: -8.56, y: -4.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475095984}
@@ -6038,91 +5944,6 @@ PolygonCollider2D:
       - {x: 9.297083, y: 6.2319613}
       - {x: 7.4788346, y: 5.613737}
       - {x: 4.948112, y: 5.2483826}
---- !u!1 &1159371780
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1159371783}
-  - component: {fileID: 1159371782}
-  - component: {fileID: 1159371781}
-  m_Layer: 0
-  m_Name: random1 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1159371781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1159371780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81416b672324f6b4893e6faf41206612, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMarker: {fileID: 591809613}
-  thoughts: {fileID: 1736929976}
-  resources: {fileID: 902418372}
-  player: {fileID: 997764096}
-  saloon: {fileID: 1837440050}
-  speed: 2.5
-  waitTime: 5
-  randomTalk: 5
---- !u!212 &1159371782
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1159371780}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1760137049
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b92db5d0d95b91a41806da5ff7b2509a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
---- !u!4 &1159371783
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1159371780}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.17, y: 2.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 586863644}
-  m_Father: {fileID: 0}
-  m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167473318
 GameObject:
   m_ObjectHideFlags: 0
@@ -6467,7 +6288,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263801343}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.01, y: -6.49, z: 0}
+  m_LocalPosition: {x: -5.94, y: -6.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475095984}
@@ -6618,7 +6439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278594917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8500,9 +8321,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Use Enter to interact.
 
-    You can buy a pickaxe from the toolshop and some food from the saloon. Different
-    parts of the map interact in different ways. Use your imagination. Try to get
-    as much as gold as you can.'
+    You can buy a pickaxe from the toolshop and eat at the saloon. Different parts
+    of the map interact in different ways. Use your imagination. Try to get as much
+    as gold as you can.'
 --- !u!222 &1609755975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9038,80 +8859,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1732646399}
---- !u!1 &1736929975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1736929978}
-  - component: {fileID: 1736929977}
-  - component: {fileID: 1736929976}
-  m_Layer: 0
-  m_Name: Thoughts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1736929976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1736929975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 22
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 112
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 
---- !u!222 &1736929977
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1736929975}
---- !u!224 &1736929978
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1736929975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 1}
-  m_Children: []
-  m_Father: {fileID: 586863644}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00000080466}
-  m_SizeDelta: {x: 322.52, y: 80}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1753167007
 GameObject:
   m_ObjectHideFlags: 0
@@ -9483,11 +9230,11 @@ GameObject:
   - component: {fileID: 1845379185}
   m_Layer: 0
   m_Name: HintPanel
-  m_TagString: ShopPanel
+  m_TagString: HintPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1845379184
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9651,6 +9398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMarker: {fileID: 591809613}
+  dialogSystem: {fileID: 1980990870}
   thoughts: {fileID: 661215152}
   resources: {fileID: 902418372}
   player: {fileID: 997764096}
@@ -10118,10 +9866,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogPanel: {fileID: 1278594916}
   introPanel: {fileID: 1436134707}
-  monologPanel: {fileID: 0}
+  monologPanel: {fileID: 1322845744}
+  hintPanel: {fileID: 1845379183}
   saloonPanel: {fileID: 1983042942}
   shopPanel: {fileID: 1391208715}
   resources: {fileID: 902418372}
+  CitizenMonolog:
+  - These people seem weird. I think I'll hang around for a couple of weeks at most.
+    I can come back later, it's our land claim after all. Maybe I should not tell
+    them what I'm up to...
+  - What the hell? Are they all that nosy. That's creeping me out.
+  Tips:
+  - '"You need tools to work. Use your gold wisely!"'
+  - '"Your uncle probably had a smelting furnace!"'
+  - '"There''s nothing suspicious about fishermen."'
+  - '"Closer they get, stranger you seem."'
+  - '"Carrying iron ore around migth reveal your intentions."'
+  - '"Rich men in a small town like this is suspicious. Eating at the saloon is expensive."'
 --- !u!1 &1981518787
 GameObject:
   m_ObjectHideFlags: 0

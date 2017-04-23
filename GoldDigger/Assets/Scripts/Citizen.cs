@@ -8,6 +8,8 @@ public class Citizen : MonoBehaviour
     [SerializeField]
     private WaypointMarker currentMarker;
     [SerializeField]
+    private DialogSystem dialogSystem;
+    [SerializeField]
     private Text thoughts;
     [SerializeField]
     private Resources resources;
@@ -63,13 +65,14 @@ public class Citizen : MonoBehaviour
             }
             randomTalkTime = Time.time;
         }
-        if(target == player.gameObject && player.IsFishing())
+        if (target == player.gameObject && player.IsFishing())
         {
+            waiting = false;
             target = saloon;
             thoughts.text = "Oh! He's just fishing";
             resources.ReduceSuspicion(2);
         }
-        else if (target == player.gameObject && player.IsDigging())
+        else if (target == player.gameObject && player.IsDigging() && Vector3.Distance(transform.position, player.gameObject.transform.position) < 3f)
         {
             target = saloon;
             thoughts.text = "Oh boy! I've got to tell others about this!";
@@ -79,6 +82,10 @@ public class Citizen : MonoBehaviour
         if (waiting && target == saloon)
         {
             Destroy(gameObject);
+            if (dialogSystem.HasCitizenMonolog())
+            {
+                dialogSystem.SetMode(DialogMode.Monolog);
+            }
         }
         if(waiting && (Time.time - startedWaiting) > waitTime)
         {
@@ -111,6 +118,11 @@ public class Citizen : MonoBehaviour
                 waiting = true;
                 startedWaiting = Time.time;
                 Debug.Log("FUCK THIS");
+            }
+
+            if(closest != currentMarker)
+            {
+                waiting = false;
             }
 
             currentMarker = closest;

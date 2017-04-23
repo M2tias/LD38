@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,12 @@ public class DialogSystem : MonoBehaviour
     private GameObject shopPanel;
     [SerializeField]
     private Resources resources;
+    [SerializeField]
+    private List<String> CitizenMonolog;
+    [SerializeField]
+    private List<String> Tips;
 
+    private String nextMonolog;
     private DialogMode mode;
 
     // Use this for initialization
@@ -44,7 +50,20 @@ public class DialogSystem : MonoBehaviour
             }
             else if (mode == DialogMode.Monolog)
             {
-                monologPanel.SetActive(true);
+                panel = monologPanel;
+                panel.SetActive(true);
+
+                Text monologText = null;
+                foreach (Transform child in panel.transform)
+                {
+                    if (child.tag == "MonologText")
+                    {
+                        monologText = child.gameObject.GetComponent<Text>();
+                    }
+                }
+                if (monologText == null) return;
+
+                monologText.text = nextMonolog;
             }
 
             if (Input.GetKeyDown(KeyCode.Return))
@@ -55,8 +74,9 @@ public class DialogSystem : MonoBehaviour
         else if (mode == DialogMode.Hint)
         {
             Time.timeScale = 0;
-            hintPanel.SetActive(true);
+            panel = hintPanel;
             dialogPanel.SetActive(true);
+            panel.SetActive(true);
 
             foreach (Transform child in panel.transform)
             {
@@ -81,9 +101,20 @@ public class DialogSystem : MonoBehaviour
             {
                 if (y == -21f)
                 {
-                    if (resources.BuyTip())
+                    if (Tips.Count > 0) {
+                        if (resources.BuyTip())
+                        {
+                            nextMonolog = Tips[0];
+                            Tips.RemoveAt(0);
+                            mode = DialogMode.Monolog;
+                            panel.SetActive(false);
+                        }
+                    }
+                    else
                     {
+                        nextMonolog = "\"You have all the knowledge.\"";
                         mode = DialogMode.Monolog;
+                        panel.SetActive(false);
                     }
                 }
                 else if (y == -63f)
@@ -189,11 +220,24 @@ public class DialogSystem : MonoBehaviour
             introPanel.SetActive(false);
             shopPanel.SetActive(false);
             saloonPanel.SetActive(false);
+            monologPanel.SetActive(false);
+            hintPanel.SetActive(false);
         }
     }
 
     private void FixedUpdate()
     {
+    }
+
+    public bool HasCitizenMonolog()
+    {
+        if (CitizenMonolog.Count > 0)
+        {
+            nextMonolog = CitizenMonolog[0];
+            CitizenMonolog.RemoveAt(0);
+            return true;
+        }
+        return false;
     }
 
     public void SetMode(DialogMode mode)
