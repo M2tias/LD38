@@ -81,11 +81,39 @@ public class DialogSystem : MonoBehaviour
             {
                 if (y == -21f)
                 {
-                    //thing 1
+                    if (mode == DialogMode.Shop)
+                    {
+                        if (resources.BuyPickAxe())
+                        {
+                            //change the menu text
+                            mode = DialogMode.None;
+                        }
+                    }
+                    else if (mode == DialogMode.Saloon)
+                    {
+                        if (resources.BuyFood())
+                        {
+                            mode = DialogMode.None;
+                        }
+                    }
                 }
-                else if( y == -63f)
+                else if (y == -63f)
                 {
-                    //thing 2
+                    if (mode == DialogMode.Shop)
+                    {
+                        if (resources.BuyFishingRod())
+                        {
+                            //change the menu text
+                            mode = DialogMode.None;
+                        }
+                    }
+                    else if (mode == DialogMode.Saloon)
+                    {
+                        if (resources.SellFish())
+                        {
+                            mode = DialogMode.None;
+                        }
+                    }
                 }
                 else
                 {

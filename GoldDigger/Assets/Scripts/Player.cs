@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     private float goldDigTime = 0f;
     private bool diggin = false;
+    private bool fishin = false;
     [SerializeField]
     [Range(0f, 100f)]
     private float maxGoldDigTime = 20f;
@@ -52,6 +53,15 @@ public class Player : MonoBehaviour
                 diggin = false;
                 goldDigTime = 0;
                 renderer.enabled = true;
+            }
+        }
+        else if(fishin)
+        {
+            if (goldDigTime > maxGoldDigTime)
+            {
+                fishin = false;
+                goldDigTime = 0;
+                renderer.enabled = true; //not really needed but there just in case
             }
         }
         else
@@ -102,14 +112,14 @@ public class Player : MonoBehaviour
                 }
                 else if (resources.Fish())
                 {
-                    diggin = true;
+                    fishin = true;
                     goldDigTime = 0;
                     //renderer.enabled = false;
                     Debug.Log("Fishin'");
                 }
                 else if (resources.Fry())
                 {
-                    diggin = true;
+                    fishin = true;
                     goldDigTime = 0;
                     //renderer.enabled = false;
                     Debug.Log("Ahh, food!");
@@ -133,6 +143,15 @@ public class Player : MonoBehaviour
 
         targetSpeed = new Vector2(speed * move_h, speed * move_v);
         rigidBody2D.AddForce(speedFactor * (targetSpeed - rigidBody2D.velocity), ForceMode2D.Impulse);
+    }
 
+    public bool IsFishing()
+    {
+        return fishin;
+    }
+
+    public bool IsDigging()
+    {
+        return diggin;
     }
 }

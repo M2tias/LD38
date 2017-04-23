@@ -17,7 +17,9 @@ public class Resources : MonoBehaviour
     private bool canSaloon = false;
     private bool canShop = false;
 
-    private int gold = 0;
+    [SerializeField]
+    [Range(0, 30)]
+    private int gold = 10;
 
     [SerializeField]
     [Range(0, 30)]
@@ -61,6 +63,23 @@ public class Resources : MonoBehaviour
 
     private float hunger = 0;
 
+    [SerializeField]
+    private bool hasPickaxe = false;
+    [SerializeField]
+    private int pickaxeCost = 9;
+    [SerializeField]
+    private bool hasFishingRod = false;
+    [SerializeField]
+    private int fishingRodCost = 10;
+    [SerializeField]
+    private int foodCost = 1;
+    [SerializeField]
+    private int fishLot = 5;
+    [SerializeField]
+    private int fishLotPrice = 1;
+    [SerializeField]
+    private float chaseTick = 0.01f;
+    
     #region textFields
     [SerializeField]
     private Text suspiciousnessText;
@@ -126,7 +145,7 @@ public class Resources : MonoBehaviour
 
     public bool DigGold()
     {
-        if (!canDig)
+        if (!canDig || !hasPickaxe)
         {
             Debug.Log("Not here, buddy!");
             return false;
@@ -167,7 +186,7 @@ public class Resources : MonoBehaviour
 
     public bool Fish()
     {
-        if (!canFish)
+        if (!canFish || !hasFishingRod)
         {
             Debug.Log("No fish on land...");
             return false;
@@ -267,8 +286,66 @@ public class Resources : MonoBehaviour
         canShop = can;
     }
 
+    public bool BuyPickAxe()
+    {
+        if (!hasPickaxe)
+        {
+            if (gold >= pickaxeCost)
+            {
+                gold -= pickaxeCost;
+                hasPickaxe = true;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public bool BuyFishingRod()
+    {
+        if (!hasFishingRod)
+        {
+            if (gold >= fishingRodCost)
+            {
+                gold -= fishingRodCost;
+                hasFishingRod = true;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public bool BuyFood()
+    {
+        if (gold >= foodCost)
+        {
+            gold -= foodCost;
+            hunger = 0;
+            return true;
+        }
+        return false;
+    }
+
+    public bool SellFish()
+    {
+        if (fish >= fishLot)
+        {
+            gold += fishLotPrice;
+            fish -= fishLot;
+            suspiciousness -= 2;
+            return true;
+        }
+        return false;
+    }
+
     public void TickChaseSuspicion(float distance)
     {
-        suspiciousness += distance * 0.01f;
+        suspiciousness += distance * chaseTick;
+    }
+
+    public void ReduceSuspicion(float amount)
+    {
+        suspiciousness -= amount;
     }
 }

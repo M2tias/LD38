@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Citizen : MonoBehaviour
 {
     [SerializeField]
     private WaypointMarker currentMarker;
+    [SerializeField]
+    private Text thoughts;
     [SerializeField]
     private Resources resources;
     [SerializeField]
@@ -18,6 +21,10 @@ public class Citizen : MonoBehaviour
     [SerializeField]
     [Range(1f, 30f)]
     private float waitTime = 5f;
+    [SerializeField]
+    [Range(1f, 30f)]
+    private float randomTalk = 5f;
+    private float randomTalkTime = 0f;
 
     private float startedWaiting;
     private Vector3 velocity = Vector3.zero;
@@ -29,6 +36,7 @@ public class Citizen : MonoBehaviour
     void Start()
     {
         target = player.gameObject;
+        randomTalkTime = Time.time;
     }
 
     private void FixedUpdate()
@@ -43,12 +51,38 @@ public class Citizen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(waiting && target == saloon)
+        if(Time.time - randomTalkTime > randomTalk)
+        {
+            if(thoughts.text == "")
+            {
+                thoughts.text = "What is he up to?";
+            }
+            else
+            {
+                thoughts.text = "";
+            }
+            randomTalkTime = Time.time;
+        }
+        if(target == player.gameObject && player.IsFishing())
+        {
+            target = saloon;
+            thoughts.text = "Oh! He's just fishing";
+            resources.ReduceSuspicion(2);
+        }
+        else if (target == player.gameObject && player.IsDigging())
+        {
+            target = saloon;
+            thoughts.text = "Oh boy! I've got to tell others about this!";
+            resources.ReduceSuspicion(-15);
+        }
+
+        if (waiting && target == saloon)
         {
             Destroy(gameObject);
         }
         if(waiting && (Time.time - startedWaiting) > waitTime)
         {
+            thoughts.text = "He's boring...";
             waiting = false;
             target = saloon;
         }
