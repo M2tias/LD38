@@ -19,14 +19,14 @@ public class Rock3Manager : MonoBehaviour
     private bool onRock = false;
     private bool offRock = true;
 
-    private SpriteRenderer renderer;
-    private PolygonCollider2D collider;
+    private SpriteRenderer _renderer;
+    private PolygonCollider2D _collider;
 
     // Use this for initialization
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<PolygonCollider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -34,16 +34,16 @@ public class Rock3Manager : MonoBehaviour
     {
         if(onRock)
         {
-            collider.enabled = false;
+            _collider.enabled = false;
             topCollider1.SetActive(true);
             topCollider2.SetActive(true);
-            renderer.sortingLayerName = "Bottom";
+            _renderer.sortingLayerName = "Bottom";
             trigger.enabled = false;
             trigger.GetComponent<Collider2D>().enabled = false;
         }
         else
         {
-            collider.enabled = true;
+            _collider.enabled = true;
             topCollider1.SetActive(false);
             topCollider2.SetActive(false);
             //renderer.sortingLayerName = "Top"; //needed??

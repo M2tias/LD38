@@ -103,7 +103,8 @@ public class DialogSystem : MonoBehaviour
             {
                 if (y == -21f)
                 {
-                    if (Tips.Count > 0) {
+                    if (Tips.Count > 0)
+                    {
                         if (resources.BuyTip())
                         {
                             nextMonolog = Tips[0];
@@ -245,6 +246,11 @@ public class DialogSystem : MonoBehaviour
     public void SetMode(DialogMode mode)
     {
         this.mode = mode;
+    }
+
+    public void SetNextMonolog(string text)
+    {
+        nextMonolog = text;
     }
 }
 

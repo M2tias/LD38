@@ -21,6 +21,8 @@ public class Resources : MonoBehaviour
 
     [SerializeField]
     private CitizenFactor citizenFactor;
+    [SerializeField]
+    private Helicopter helicopter;
 
     [SerializeField]
     [Range(0, 30)]
@@ -30,7 +32,7 @@ public class Resources : MonoBehaviour
     [Range(0, 30)]
     private int maxGoldOre = 10;
 
-    private int goldOre = 1;
+    private int goldOre = 0;
 
     [SerializeField]
     [Range(0, 30)]
@@ -40,7 +42,7 @@ public class Resources : MonoBehaviour
 
     [SerializeField]
     [Range(0, 30)]
-    private int maxDays = 10;
+    private int maxDays = 1;
 
     private int day = 0;
 
@@ -145,17 +147,18 @@ public class Resources : MonoBehaviour
         {
             suspiciousnessText.color = Color.red;
         }
-        else if(suspiciousness > 100f)
-        {
-            suspiciousness = 100f;
-            spawnTime = 1f; 
-        }
         else
         {
             suspiciousnessText.color = Color.black;
         }
 
-        if(goldOre >= 1)
+        if (suspiciousness > 100f)
+        {
+            suspiciousness = 100f;
+            spawnTime = 1f;
+        }
+
+        if (goldOre >= 1)
         {
             goldOreText.color = Color.red;
         }
@@ -177,6 +180,11 @@ public class Resources : MonoBehaviour
         if(hunger > 100f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(day >= maxDays)
+        {
+            helicopter.GetComponent<Animator>().SetTrigger("ToTheRescue");
         }
 
         if(Time.time - spawnTimer > spawnTime)
@@ -463,5 +471,19 @@ public class Resources : MonoBehaviour
     public void ResetSpawnTime()
     {
         spawnTimer = Time.time;
+    }
+
+    public void Win()
+    {
+        if (gold > 0)
+        {
+            dialogSystem.SetNextMonolog("You managed to mine some gold without being torched!\nYou mined " + gold + " ounces of gold!");
+            dialogSystem.SetMode(DialogMode.Monolog);
+        }
+        else
+        {
+            dialogSystem.SetNextMonolog("You failed in what you set out to do but at least you didn't die in a small strange town!");
+            dialogSystem.SetMode(DialogMode.Monolog);
+        }
     }
 }

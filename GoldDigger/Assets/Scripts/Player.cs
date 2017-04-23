@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private Resources resources;
+    [SerializeField]
+    private ParticleSystem waterParticles;
 
     [SerializeField]
     [Range(0.5f, 5f)]
@@ -25,13 +27,17 @@ public class Player : MonoBehaviour
 
     private Vector2 targetSpeed;
     private Rigidbody2D rigidBody2D;
-    private SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
+    ParticleSystem.EmissionModule starEmission;
+    ParticleSystem.EmissionModule waterEmission;
 
     // Use this for initialization
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
+        starEmission = GetComponent<ParticleSystem>().emission;
+        waterEmission = waterParticles.emission;
     }
 
     // Update is called once per frame
@@ -45,14 +51,16 @@ public class Player : MonoBehaviour
         float move_h = 0;
         float move_v = 0;
         goldDigTime++;
-
         if (diggin)
         {
+            waterEmission.enabled = false;
+            starEmission.enabled = true;
             if (goldDigTime > maxGoldDigTime)
             {
                 diggin = false;
                 goldDigTime = 0;
-                renderer.enabled = true;
+                _renderer.enabled = true;
+
             }
         }
         else if(fishin)
@@ -61,11 +69,16 @@ public class Player : MonoBehaviour
             {
                 fishin = false;
                 goldDigTime = 0;
-                renderer.enabled = true; //not really needed but there just in case
+                _renderer.enabled = true; //not really needed but there just in case
             }
+
+            starEmission.enabled = false;
+            waterEmission.enabled = true;
         }
         else
         {
+            starEmission.enabled = false;
+            waterEmission.enabled = false;
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 move_h = -1;
@@ -100,14 +113,14 @@ public class Player : MonoBehaviour
                 {
                     diggin = true;
                     goldDigTime = 0;
-                    renderer.enabled = false;
+                    _renderer.enabled = false;
                     Debug.Log("Diggin' sum gold");
                 }
                 else if (resources.RefineGold())
                 {
                     diggin = true;
                     goldDigTime = 0;
-                    renderer.enabled = false;
+                    _renderer.enabled = false;
                     Debug.Log("Refinin' sum gold");
                 }
                 else if (resources.Fish())
