@@ -42,7 +42,7 @@ public class DialogSystem : MonoBehaviour
     {
         GameObject panel = null;
         GameObject menuCursor = null;
-        if (mode == DialogMode.Start | mode == DialogMode.Monolog)
+        if (mode == DialogMode.Start | mode == DialogMode.Monolog | mode == DialogMode.End)
         {
             Time.timeScale = 0;
             dialogPanel.SetActive(true);
@@ -50,7 +50,7 @@ public class DialogSystem : MonoBehaviour
             {
                 introPanel.SetActive(true);
             }
-            else if (mode == DialogMode.Monolog)
+            else if (mode == DialogMode.Monolog || mode == DialogMode.End)
             {
                 panel = monologPanel;
                 panel.SetActive(true);
@@ -68,7 +68,11 @@ public class DialogSystem : MonoBehaviour
                 monologText.text = nextMonolog;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if(mode == DialogMode.End)
+            {
+                Application.Quit();
+            }
+            else if (Input.GetKeyDown(KeyCode.Return))
             {
                 mode = DialogMode.None;
             }

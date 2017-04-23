@@ -478,12 +478,12 @@ public class Resources : MonoBehaviour
         if (gold > 0)
         {
             dialogSystem.SetNextMonolog("You managed to mine some gold without being torched!\nYou mined " + gold + " ounces of gold!");
-            dialogSystem.SetMode(DialogMode.Monolog);
+            dialogSystem.SetMode(DialogMode.End);
         }
         else
         {
             dialogSystem.SetNextMonolog("You failed in what you set out to do but at least you didn't die in a small strange town!");
-            dialogSystem.SetMode(DialogMode.Monolog);
+            dialogSystem.SetMode(DialogMode.End);
         }
     }
 }

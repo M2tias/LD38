@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,20 @@ public class Citizen : MonoBehaviour
     private bool waiting = false;
     private GameObject target;
 
+    private List<string> thoughtsList = new List<string>()
+    {
+        "Strange clothes...",
+        "What is he up to?",
+        "How is someone that skinny?",
+        "He looks like he can't even lift a pickaxe",
+        "Why is he here?",
+        "He should go back",
+        "Hey! Go home loser!",
+        "Why does he has to bother us?",
+        "I'm so annoyed by him",
+        "I just want to live my quiet life in peace"
+    };
+
     public void Init(WaypointMarker marker, DialogSystem ds, Resources r, Player p, Saloon s)
     {
         currentMarker = marker;
@@ -68,7 +83,7 @@ public class Citizen : MonoBehaviour
         {
             if(thoughts.text == "")
             {
-                thoughts.text = "What is he up to?";
+                thoughts.text = thoughtsList[Mathf.RoundToInt(UnityEngine.Random.value*9)];
             }
             else
             {
