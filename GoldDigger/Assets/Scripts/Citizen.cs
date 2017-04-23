@@ -51,7 +51,7 @@ public class Citizen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - randomTalkTime > randomTalk)
+        if(Time.time - randomTalkTime > randomTalk && target == player.gameObject)
         {
             if(thoughts.text == "")
             {

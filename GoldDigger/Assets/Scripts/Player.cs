@@ -138,6 +138,11 @@ public class Player : MonoBehaviour
                     //do nothing
                     Input.ResetInputAxes();
                 }
+                else if (resources.AskHints())
+                {
+                    //do nothing
+                    Input.ResetInputAxes();
+                }
             }
         }
 

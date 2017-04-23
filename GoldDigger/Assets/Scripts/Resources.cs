@@ -16,6 +16,7 @@ public class Resources : MonoBehaviour
     private bool canFry = false;
     private bool canSaloon = false;
     private bool canShop = false;
+    private bool canAskHints = false;
 
     [SerializeField]
     [Range(0, 30)]
@@ -79,8 +80,10 @@ public class Resources : MonoBehaviour
     private int fishLotPrice = 1;
     [SerializeField]
     private float chaseTick = 0.01f;
-    
-    #region textFields
+    [SerializeField]
+    private float tipCost = 5f;
+
+    #region UI Fields
     [SerializeField]
     private Text suspiciousnessText;
     [SerializeField]
@@ -95,6 +98,10 @@ public class Resources : MonoBehaviour
     private Text hungerText;
     [SerializeField]
     private Text fishText;
+    [SerializeField]
+    private Image pickaxeImage;
+    [SerializeField]
+    private Image fishingRodImage;
     #endregion
 
     [SerializeField]
@@ -124,6 +131,14 @@ public class Resources : MonoBehaviour
             hungerText.color = Color.black;
         }
         fishText.text = fish.ToString() + '/' + maxFish.ToString();
+        if(hasFishingRod)
+        {
+            fishingRodImage.gameObject.SetActive(true);
+        }
+        if(hasPickaxe)
+        {
+            pickaxeImage.gameObject.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
@@ -256,6 +271,18 @@ public class Resources : MonoBehaviour
         return true;
     }
 
+    public bool AskHints()
+    {
+        if (!canAskHints)
+        {
+            return false;
+        }
+
+        dialogSystem.SetMode(DialogMode.Hint);
+
+        return true;
+    }
+
     public void CanDig(bool can)
     {
         canDig = can;
@@ -286,6 +313,11 @@ public class Resources : MonoBehaviour
         canShop = can;
     }
 
+    public void CanAskHints(bool can)
+    {
+        canAskHints = can;
+    }
+
     public bool BuyPickAxe()
     {
         if (!hasPickaxe)
@@ -299,6 +331,11 @@ public class Resources : MonoBehaviour
             return false;
         }
         return false;
+    }
+
+    public bool HasPickAxe()
+    {
+        return hasPickaxe;
     }
 
     public bool BuyFishingRod()
@@ -316,6 +353,11 @@ public class Resources : MonoBehaviour
         return false;
     }
 
+    public bool HasFishingRod()
+    {
+        return hasFishingRod;
+    }
+
     public bool BuyFood()
     {
         if (gold >= foodCost)
@@ -327,13 +369,19 @@ public class Resources : MonoBehaviour
         return false;
     }
 
+    public bool BuyTip()
+    {
+        suspiciousness += tipCost;
+        return false;
+    }
+
     public bool SellFish()
     {
         if (fish >= fishLot)
         {
             gold += fishLotPrice;
             fish -= fishLot;
-            suspiciousness -= 2;
+            suspiciousness -= 5;
             return true;
         }
         return false;

@@ -10,6 +10,10 @@ public class DialogSystem : MonoBehaviour
     [SerializeField]
     private GameObject introPanel;
     [SerializeField]
+    private GameObject monologPanel;
+    [SerializeField]
+    private GameObject hintPanel;
+    [SerializeField]
     private GameObject saloonPanel;
     [SerializeField]
     private GameObject shopPanel;
@@ -30,14 +34,69 @@ public class DialogSystem : MonoBehaviour
     {
         GameObject panel = null;
         GameObject menuCursor = null;
-        if (mode == DialogMode.Start)
+        if (mode == DialogMode.Start | mode == DialogMode.Monolog)
         {
             Time.timeScale = 0;
             dialogPanel.SetActive(true);
-            introPanel.SetActive(true);
+            if (mode == DialogMode.Start)
+            {
+                introPanel.SetActive(true);
+            }
+            else if (mode == DialogMode.Monolog)
+            {
+                monologPanel.SetActive(true);
+            }
+
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 mode = DialogMode.None;
+            }
+        }
+        else if (mode == DialogMode.Hint)
+        {
+            Time.timeScale = 0;
+            hintPanel.SetActive(true);
+            dialogPanel.SetActive(true);
+
+            foreach (Transform child in panel.transform)
+            {
+                if (child.tag == "MenuCursor")
+                {
+                    menuCursor = child.gameObject;
+                }
+            }
+            if (menuCursor == null) return;
+
+            float x = menuCursor.GetComponent<RectTransform>().anchoredPosition.x;
+            float y = menuCursor.GetComponent<RectTransform>().anchoredPosition.y;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                menuCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, -21f);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                menuCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, -63f);
+            }
+            else if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (y == -21f)
+                {
+                    if (resources.BuyTip())
+                    {
+                        mode = DialogMode.Monolog;
+                    }
+                }
+                else if (y == -63f)
+                {
+                    //change the menu text
+                    mode = DialogMode.None;
+                }
+                else
+                {
+                    mode = DialogMode.None;
+                    resources.CanSaloon(false);
+                    resources.CanShop(false);
+                }
             }
         }
         else if (mode == DialogMode.Shop || mode == DialogMode.Saloon)
@@ -149,6 +208,7 @@ public enum DialogMode
     Saloon,
     Shop,
     Monolog,
+    Hint,
     End,
     None
 }
