@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4801648304490464}
   - component: {fileID: 212433064716296434}
   - component: {fileID: 114805770062144380}
+  - component: {fileID: 70594877041430390}
   m_Layer: 0
   m_Name: citizen
   m_TagString: Untagged
@@ -77,6 +78,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &70594877041430390
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438178819855710}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.008169889, y: 0.008170128}
+  m_Size: {x: 0.12953758, y: 0.45515537}
+  m_Direction: 0
 --- !u!114 &114698686047826460
 MonoBehaviour:
   m_ObjectHideFlags: 1

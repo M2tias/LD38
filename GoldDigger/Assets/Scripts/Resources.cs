@@ -143,7 +143,7 @@ public class Resources : MonoBehaviour
             hungerText.color = Color.black;
         }
 
-        if (suspiciousness >= 60f)
+        if (suspiciousness >= maxSuspiciousness*0.6f)
         {
             suspiciousnessText.color = Color.red;
         }
@@ -152,9 +152,9 @@ public class Resources : MonoBehaviour
             suspiciousnessText.color = Color.black;
         }
 
-        if (suspiciousness > 100f)
+        if (suspiciousness > maxSuspiciousness)
         {
-            suspiciousness = 100f;
+            suspiciousness = maxSuspiciousness;
             spawnTime = 1f;
         }
 
@@ -177,9 +177,10 @@ public class Resources : MonoBehaviour
             pickaxeImage.gameObject.SetActive(true);
         }
 
-        if(hunger > 100f)
+        if(hunger > maxHunger)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            dialogSystem.SetNextMonolog("You should eat. Even in the wilderness.");
+            dialogSystem.SetMode(DialogMode.End);
         }
 
         if(day >= maxDays)
@@ -485,5 +486,16 @@ public class Resources : MonoBehaviour
             dialogSystem.SetNextMonolog("You failed in what you set out to do but at least you didn't die in a small strange town!");
             dialogSystem.SetMode(DialogMode.End);
         }
+    }
+
+    public bool ChaseToDeath()
+    {
+        return suspiciousness >= maxSuspiciousness;
+    }
+
+    public void Kill()
+    {
+        dialogSystem.SetNextMonolog("You were torched by the townspeople for disturbing their peace too much!");
+        dialogSystem.SetMode(DialogMode.End);
     }
 }

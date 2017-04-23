@@ -159,4 +159,15 @@ public class Citizen : MonoBehaviour
             currentMarker = closest;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if(resources.ChaseToDeath())
+            {
+                resources.Kill();
+            }
+        }
+    }
 }

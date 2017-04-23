@@ -139,6 +139,9 @@ public class Player : MonoBehaviour
                 }
             }
 
+#if UNITY_WEBGL
+            StartCoroutine(WebGL_Keybind());
+#else
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 if (resources.Saloon())
@@ -157,8 +160,9 @@ public class Player : MonoBehaviour
                     Input.ResetInputAxes();
                 }
             }
+#endif
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 resources.SpawnCitizen();
             }
@@ -176,5 +180,28 @@ public class Player : MonoBehaviour
     public bool IsDigging()
     {
         return diggin;
+    }
+
+    public IEnumerator WebGL_Keybind()
+    {
+        yield return new WaitForSeconds(1);
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (resources.Saloon())
+            {
+                //do nothing
+                Input.ResetInputAxes();
+            }
+            else if (resources.Shop())
+            {
+                //do nothing
+                Input.ResetInputAxes();
+            }
+            else if (resources.AskHints())
+            {
+                //do nothing
+                Input.ResetInputAxes();
+            }
+        }
     }
 }

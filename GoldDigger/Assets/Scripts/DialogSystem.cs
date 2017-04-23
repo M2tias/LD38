@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogSystem : MonoBehaviour
@@ -29,6 +30,7 @@ public class DialogSystem : MonoBehaviour
 
     private String nextMonolog;
     private DialogMode mode;
+    //private bool readInput = false;
 
     // Use this for initialization
     void Start()
@@ -40,6 +42,10 @@ public class DialogSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if (!readInput && dialogPanel.activeSelf)
+        {
+            Input.ResetInputAxes();
+        }*/
         GameObject panel = null;
         GameObject menuCursor = null;
         if (mode == DialogMode.Start | mode == DialogMode.Monolog | mode == DialogMode.End)
@@ -68,9 +74,10 @@ public class DialogSystem : MonoBehaviour
                 monologText.text = nextMonolog;
             }
 
-            if(mode == DialogMode.End)
+            if(mode == DialogMode.End && Input.GetKeyDown(KeyCode.Return))
             {
-                Application.Quit();
+                //Application.Quit();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -229,8 +236,18 @@ public class DialogSystem : MonoBehaviour
             saloonPanel.SetActive(false);
             monologPanel.SetActive(false);
             hintPanel.SetActive(false);
+            //readInput = false;
         }
     }
+
+    /*private void OnGUI()
+    {
+        Event e = Event.current;
+        if(e.type == EventType.KeyUp)
+        {
+            readInput = true;
+        }
+    }*/
 
     private void FixedUpdate()
     {

@@ -607,7 +607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: -21}
+  m_AnchoredPosition: {x: -114, y: -21}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97662790
@@ -710,7 +710,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Suspiciousness
+  m_Text: Suspicion
 --- !u!222 &102824669
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -958946541
+  randomSeed: -1441409147
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5673,7 +5673,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 22, y: 135}
-  m_SizeDelta: {x: 257, y: 40}
+  m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &652344156
 MonoBehaviour:
@@ -5707,7 +5707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Kakkak\xF6kk\xF6nen"
+  m_Text: Small Town Mines
 --- !u!222 &652344157
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6903,22 +6903,22 @@ MonoBehaviour:
   gold: 10
   maxGoldOre: 10
   maxFish: 10
-  maxDays: 1
-  hoursInDay: 3
+  maxDays: 12
+  hoursInDay: 8
   hourTick: 0.005
   maxSuspiciousness: 100
   maxHunger: 100
-  hungerTick: 0.04
-  hasPickaxe: 1
+  hungerTick: 0.035
+  hasPickaxe: 0
   pickaxeCost: 9
   hasFishingRod: 0
   fishingRodCost: 10
   foodCost: 1
   fishLot: 5
   fishLotPrice: 1
-  chaseTick: 0.015
+  chaseTick: 0.012
   tipCost: 5
-  spawnTime: 15
+  spawnTime: 20
   suspiciousnessText: {fileID: 1373483680}
   goldText: {fileID: 490923221}
   goldOreText: {fileID: 1425976385}
@@ -7524,7 +7524,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hunger:'
+  m_Text: Hunger
 --- !u!222 &992684843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7619,7 +7619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &997764095
 Rigidbody2D:
   serializedVersion: 4
@@ -7824,7 +7824,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -224271429
+  randomSeed: 713374020
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11165,9 +11165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Fish:
-
-'
+  m_Text: Fish
 --- !u!222 &1107708574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11808,13 +11806,14 @@ GameObject:
   - component: {fileID: 1278594917}
   - component: {fileID: 1278594919}
   - component: {fileID: 1278594918}
+  - component: {fileID: 1278594920}
   m_Layer: 0
   m_Name: DialogPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1278594917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11871,6 +11870,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1278594916}
+--- !u!114 &1278594920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1278594916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33a72d8133a72447b9a658d0c602f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1297502040
 GameObject:
   m_ObjectHideFlags: 0
@@ -12655,7 +12665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1436134708
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12857,11 +12867,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hey there handsome,
+  m_Text: 'Hey stranger.
 
-    I haven''t seen you here before! What brought you to our little town? There''s
-    not much for a young man like you to do around here, but I''m sure we can think
-    of something if you visit us...
+    Better watch out around here. We don''t really care for no strangers...
 
 
     What would you like?'
@@ -13232,7 +13240,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Day:'
+  m_Text: Day
 --- !u!222 &1500968785
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13763,7 +13771,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time:'
+  m_Text: Time
 --- !u!222 &1599157687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15040,7 +15048,7 @@ MonoBehaviour:
     leave?
 
 
-    We don''t care for strangers around here. You better watch it boy!'
+    We like to live in peace amongst ourselves. You better watch it boy!'
 --- !u!222 &1920361177
 CanvasRenderer:
   m_ObjectHideFlags: 0
