@@ -21,8 +21,10 @@ public class DialogSystem : MonoBehaviour
     [SerializeField]
     private Resources resources;
     [SerializeField]
+    [TextArea]
     private List<String> CitizenMonolog;
     [SerializeField]
+    [TextArea]
     private List<String> Tips;
 
     private String nextMonolog;

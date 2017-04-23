@@ -30,9 +30,20 @@ public class Citizen : MonoBehaviour
 
     private float startedWaiting;
     private Vector3 velocity = Vector3.zero;
+    private bool spawnFriends = false;
 
     private bool waiting = false;
     private GameObject target;
+
+    public void Init(WaypointMarker marker, DialogSystem ds, Resources r, Player p, Saloon s)
+    {
+        currentMarker = marker;
+        dialogSystem = ds;
+        resources = r;
+        player = p;
+        saloon = s.gameObject;
+        transform.position = currentMarker.transform.position;
+    }
 
     // Use this for initialization
     void Start()
@@ -76,11 +87,16 @@ public class Citizen : MonoBehaviour
         {
             target = saloon;
             thoughts.text = "Oh boy! I've got to tell others about this!";
+            spawnFriends = true;
             resources.ReduceSuspicion(-15);
         }
 
         if (waiting && target == saloon)
         {
+            if(spawnFriends)
+            {
+                resources.SpawnCitizen();
+            }
             Destroy(gameObject);
             if (dialogSystem.HasCitizenMonolog())
             {

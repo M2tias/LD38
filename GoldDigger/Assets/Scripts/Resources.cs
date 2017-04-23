@@ -20,6 +20,9 @@ public class Resources : MonoBehaviour
     private bool canAskHints = false;
 
     [SerializeField]
+    private CitizenFactor citizenFactor;
+
+    [SerializeField]
     [Range(0, 30)]
     private int gold = 10;
 
@@ -83,6 +86,10 @@ public class Resources : MonoBehaviour
     private float chaseTick = 0.01f;
     [SerializeField]
     private float tipCost = 5f;
+    [SerializeField]
+    private float spawnTime = 10f;
+
+    private float spawnTimer = 0f;
 
     #region UI Fields
     [SerializeField]
@@ -111,7 +118,7 @@ public class Resources : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        spawnTimer = Time.time + 15f;
     }
 
     // Update is called once per frame
@@ -123,7 +130,9 @@ public class Resources : MonoBehaviour
         hourText.text = hour.ToString("0") + '/' + hoursInDay.ToString();
         dayText.text = day.ToString() + '/' + maxDays.ToString();
         hungerText.text = hunger.ToString("0") + '/' + maxHunger.ToString();
-        if(hunger > 50f)
+        fishText.text = fish.ToString() + '/' + maxFish.ToString();
+
+        if (hunger > 50f)
         {
             hungerText.color = Color.red;
         }
@@ -131,18 +140,50 @@ public class Resources : MonoBehaviour
         {
             hungerText.color = Color.black;
         }
-        fishText.text = fish.ToString() + '/' + maxFish.ToString();
+
+        if (suspiciousness >= 60f)
+        {
+            suspiciousnessText.color = Color.red;
+        }
+        else if(suspiciousness > 100f)
+        {
+            suspiciousness = 100f;
+            spawnTime = 1f; 
+        }
+        else
+        {
+            suspiciousnessText.color = Color.black;
+        }
+
+        if(goldOre >= 1)
+        {
+            goldOreText.color = Color.red;
+        }
+        else
+        {
+            goldOreText.color = Color.black;
+        }
+
         if(hasFishingRod)
         {
             fishingRodImage.gameObject.SetActive(true);
         }
+
         if(hasPickaxe)
         {
             pickaxeImage.gameObject.SetActive(true);
         }
+
         if(hunger > 100f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(Time.time - spawnTimer > spawnTime)
+        {
+            Debug.Log("Spawned");
+            SpawnCitizen();
+            spawnTimer = Time.time;
         }
     }
 
@@ -388,7 +429,7 @@ public class Resources : MonoBehaviour
         {
             gold += fishLotPrice;
             fish -= fishLot;
-            suspiciousness -= 5;
+            suspiciousness -= 8;
             return true;
         }
         return false;
@@ -412,5 +453,15 @@ public class Resources : MonoBehaviour
         {
             suspiciousness -= amount;
         }
+    }
+
+    public void SpawnCitizen()
+    {
+        citizenFactor.Create(dialogSystem, this);
+    }
+
+    public void ResetSpawnTime()
+    {
+        spawnTimer = Time.time;
     }
 }

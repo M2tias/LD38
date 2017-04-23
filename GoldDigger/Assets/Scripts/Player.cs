@@ -144,6 +144,11 @@ public class Player : MonoBehaviour
                     Input.ResetInputAxes();
                 }
             }
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                resources.SpawnCitizen();
+            }
         }
 
         targetSpeed = new Vector2(speed * move_h, speed * move_v);
